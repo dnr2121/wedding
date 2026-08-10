@@ -1475,33 +1475,39 @@ Dalam akad, kami tidak akan menemukan titik, melainkan koma yg menjadi tanda bah
 <div class="music" onclick="toggleMusic()">
 🎵
 </div>
-
-<audio id="audio" loop>
-
-<source src="lagu.mpeg">
-
+<audio id="audio" loop preload="auto">
+    <source src="lagu.mpeg" type="audio/mpeg">
 </audio>
 <script type="module">
 
 /* ==========================================================
 MUSIC
    ========================================================== */
-
 const music = document.getElementById("audio");
 
 window.toggleMusic = function () {
 
     if (music.paused) {
-        music.play();
+
+        music.play()
+            .then(() => {
+                console.log("Musik menyala");
+            })
+            .catch(error => {
+                console.log("Musik diblokir browser:", error);
+            });
+
     } else {
+
         music.pause();
+
     }
 
 };
 
 
 /* ==========================================================
-   COUNTDOWN
+COUNTDOWN
    ========================================================== */
 
 const eventDate = new Date(2026, 7, 16, 9, 0, 0).getTime();
