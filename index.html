@@ -249,22 +249,20 @@ Buka Undangan
     <source src="lagu.mpeg" type="audio/mpeg">
 </audio>
 <script>
+
 const params = new URLSearchParams(window.location.search);
 
 document.getElementById("guest").textContent =
-params.get("to") || "Tamu Undangan";
+    params.get("to") || "Tamu Undangan";
 
-function openInvitation() {
-    // Putar musik
-const music = document.getElementById("music");
 
-music.play().catch(err=>{
-    console.log(err);
-});
+function openInvitation(){
 
-    // Pindah ke halaman isi sambil membawa nama tamu
-    window.location.href = "isi.html?" + params.toString();
+    window.location.href =
+        "isi.html?" + params.toString();
+
 }
+
 </script>
 </body>
 
